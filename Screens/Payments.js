@@ -58,7 +58,10 @@ const Payments = () => {
   return (
     <View style={styles.container}>
       <Image source={require("../assets/ltclogo.png")} style={styles.logo} />
-      <Text style={styles.title}>Enter Your Payment Details</Text>
+       <Text style={styles.title}>
+               <Text style={styles.titleHighlight}>Enter Your Payment Details</Text>
+            </Text>
+      
 
       <CreditCardInput
         key={formKey} // força a recriação para limpar

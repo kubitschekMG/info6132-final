@@ -15,7 +15,7 @@ const LoginScreen = () => {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         console.log("Logged in with: ", user.email); // Exibe o e-mail do usuário logado
-        navigation.navigate("Home"); // Navega para a tela principal após login bem-sucedido
+        navigation.navigate("Hometab"); // Navega para a tela principal após login bem-sucedido
       } catch (error) {
         console.error(error.message);
       }
@@ -25,7 +25,11 @@ const LoginScreen = () => {
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <Image source={require("../assets/ltclogo.png")} style={styles.logo} />
-          <Image source={require("../assets/ltcbus.png")} style={styles.secondImage} />
+          <Image source={require("../assets/Login.png")} style={styles.secondImage} />
+
+          <Text style={styles.title}>
+         <Text style={styles.titleHighlight}>Login</Text>
+      </Text>
         <TextInput
           label="Email"
           value={email}
@@ -80,11 +84,26 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 10,
+    backgroundColor: "#007AC1",
+    width: 370,
+    height: 60,
+    justifyContent: "center",
+    alignItems: "center",
   },
   link: {
     marginTop: 20,
     textAlign: "center",
     color: "#007BFF",
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 10,
+  },
+  titleHighlight: {
+    color: "#007AC1",
+    fontWeight: 'bold',
   },
 });
 

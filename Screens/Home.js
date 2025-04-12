@@ -4,9 +4,10 @@ import { Button, Text, TextInput, Card, RadioButton, Menu } from "react-native-p
 import { useNavigation } from "@react-navigation/native";
 import { auth } from "../data/firebase";
 import { signOut } from "firebase/auth";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { addDoc, collection, getDocs, onSnapshot, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../data/firebase"; 
+
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -149,7 +150,10 @@ const formatCardField = (cardNumber) => {
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <Image source={require("../assets/ltclogo.png")} style={styles.logo} />
-        <Text style={styles.title}>Welcome to the Home Page!</Text>
+          <Text style={styles.title}>
+                 <Text style={styles.titleHighlight}>Welcome to the Home Page!</Text>
+              </Text>
+        
 
         
 
@@ -160,9 +164,9 @@ const formatCardField = (cardNumber) => {
           style={styles.button}
           buttonColor="#0a7ac0"
           icon={() => (
-            <Ionicons 
-              name={showBagunca ? "remove" : "add"} 
-              size={20} 
+            <FontAwesome 
+              name={showAddValueCard ? "minus" : "plus"}
+              size={18} 
               color="white" 
             />
           )}
@@ -305,9 +309,9 @@ const formatCardField = (cardNumber) => {
           style={styles.button}
           buttonColor="#0fa261" 
           icon={() => (
-            <Ionicons 
-              name={showPassManager ? "remove" : "add"} 
-              size={20} 
+            <FontAwesome
+              name={showPassManager ? "minus" : "plus"} 
+              size={18} 
               color="white" 
             />
           )}
@@ -377,9 +381,9 @@ const formatCardField = (cardNumber) => {
           style={styles.button}
           buttonColor="#f3922c"
           icon={() => (
-            <Ionicons 
-              name={planTrip ? "remove" : "add"} 
-              size={20} 
+            <FontAwesome
+              name={planTrip ? "minus" : "plus"} 
+              size={18} 
               color="white" 
             />
           )}
@@ -400,9 +404,9 @@ const formatCardField = (cardNumber) => {
           style={styles.button}
           
           icon={() => (
-            <Ionicons 
-              name={fares ? "remove" : "add"} 
-              size={20} 
+            <FontAwesome
+              name={fares ? "minus" : "plus"} 
+              size={18} 
               color="white" 
             />
           )}
@@ -444,6 +448,10 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 10,
+    width: 370,
+    height: 60,
+    justifyContent: "center",
+    alignItems: "center",
   },
   cardContainer: {
     marginTop: 20,
@@ -517,6 +525,16 @@ const styles = StyleSheet.create({
     height: 185,
     alignSelf: "center",
     resizeMode:"contain"
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 10,
+  },
+  titleHighlight: {
+    color: "#007AC1",
+    fontWeight: 'bold',
   },
 });
 

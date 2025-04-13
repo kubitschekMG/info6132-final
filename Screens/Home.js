@@ -253,25 +253,29 @@ const formatCardField = (cardNumber) => {
               <Text>Please select the Card you would like to manage:</Text>
               <Text style={styles.sectionTitle}>The following Cards are registered to this account:</Text>
               
-              {/* Tabela de cartões */}
-              <View style={styles.tableHeader}>
-                <Text style={styles.tableHeaderText}>Card Name</Text>
-                <Text style={styles.tableHeaderText}>Serial Number</Text>
-                <Text style={styles.tableHeaderText}>Balance</Text>
-              </View>
-              
-              {busPasses.map((card, index) => (
+              <View style={styles.tableContainer}>
+              <View style={[styles.tableRow, styles.tableHeader]}>
+  <Text style={[styles.tableHeaderText, { flex: 2 }]}>Select</Text>
+  <Text style={[styles.tableHeaderText, { flex: 3 }]}>Card Name</Text>
+  <Text style={[styles.tableHeaderText, { flex: 4 }]}>Serial Number</Text>
+  <Text style={[styles.tableHeaderText, { flex: 2 }]}>Balance</Text>
+</View>
+
+{busPasses.map((card) => (
   <View key={card.id} style={styles.tableRow}>
-    <RadioButton
-      value={card.cardName}
-      status={selectedCard === card.cardName ? 'checked' : 'unchecked'}
-      onPress={() => setSelectedCard(card.cardName)}
-    />
-    <Text style={styles.tableText}>{card.cardName}</Text>
-    <Text style={styles.tableText}>{card.cardSerial}</Text>
-    <Text style={styles.tableText}>{card.balance}</Text>
+    <View style={{ flex: 2 }}>
+      <RadioButton
+        value={card.cardName}
+        status={selectedCard === card.cardName ? 'checked' : 'unchecked'}
+        onPress={() => setSelectedCard(card.cardName)}
+      />
+    </View>
+    <Text style={[styles.tableText, { flex: 3 }]}>{card.cardName}</Text>
+    <Text style={[styles.tableText, { flex: 4 }]}>{card.cardSerial}</Text>
+    <Text style={[styles.tableText, { flex: 1 }]}>{card.balance}</Text>
   </View>
 ))}
+</View>
   {/* Botões Add Value e Delete Card */}
   <View style={styles.buttonContainer}>
                 <Button 
@@ -430,21 +434,8 @@ const formatCardField = (cardNumber) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-  scrollContainer: {
-    flexGrow: 1,
-    justifyContent: "flex-start",
-    padding: 20,
-  },
-  logo: {
-    width: 450,
-    height: 150,
-    alignSelf: "center",
-    marginBottom: 20,
-    marginTop: 20,
+  balanceCol: {
+    width: '20%',
   },
   button: {
     marginTop: 10,
@@ -453,24 +444,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 15,
+  },
   cardContainer: {
     marginTop: 20,
     padding: 15,
     backgroundColor: "#f9f9f9",
     borderRadius: 10,
-  },
-  cardTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-  sectionTitle: {
-    fontSize: 16,
-    fontWeight: "bold",
-    marginTop: 10,
-  },
-  input: {
-    marginBottom: 10,
   },
   cardItem: {
     marginBottom: 10,
@@ -478,28 +461,25 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  tableHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ddd",
-    paddingBottom: 5,
-  },
-  tableHeaderText: {
-    fontSize: 16,
+  cardTitle: {
+    fontSize: 18,
     fontWeight: "bold",
-    width: "30%",
+    marginBottom: 10,
   },
-  tableRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingVertical: 8,
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
   },
-  tableText: {
-    fontSize: 14,
-    width: "30%",
+  cs1: {
+    width: 320,
+    height: 320,
+    alignSelf: "center",
+  },
+  fares: {
+    width: 400,
+    height: 185,
+    alignSelf: "center",
+    resizeMode: "contain",
   },
   greyButton: {
     backgroundColor: "#A9A9A9",
@@ -509,23 +489,75 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 0, // bordas quadradas
   },
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 15,
+  input: {
+    marginBottom: 10,
   },
-  cs1:{
-    width: 320,
-    height: 320,
+  logo: {
+    width: 450,
+    height: 150,
     alignSelf: "center",
-    
+    marginBottom: 20,
+    marginTop: 20,
   },
-  fares:{
-    width: 400,
-    height: 185,
-    alignSelf: "center",
-    resizeMode:"contain"
+  nameCol: {
+    width: '40%',
   },
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: "flex-start",
+    padding: 20,
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginTop: 10,
+  },
+  serialCol: {
+    width: '40%',
+  },
+  tableContainer: {
+    backgroundColor: '#f2f2f2',
+    borderRadius: 12,
+    marginTop: 16,
+  
+    width: '110%',
+    alignSelf: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  
+  tableRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  
+  tableHeader: {
+    backgroundColor: '#007AC1',
+    borderBottomWidth: 2,
+    borderBottomColor: '#005b96',
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+  },
+  
+  tableHeaderText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 15,
+    textAlign: 'center',
+  },
+  
+  tableText: {
+    fontSize: 14,
+    color: '#333',
+    textAlign: 'center',
+  },
+  
   title: {
     fontSize: 28,
     fontWeight: "bold",
@@ -537,6 +569,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
 
 export default HomeScreen;
 
